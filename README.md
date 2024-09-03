@@ -1,6 +1,5 @@
-### 👋 Hey there! I'm Michael, passionate about AI, cryptocurrencies, and building cool stuff.
 ### 🚀 About Me
-Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencies, and building cool stuff.
+Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencies and building cool stuff.
 
 ### 🔍 Interests
 - AI Workflow
