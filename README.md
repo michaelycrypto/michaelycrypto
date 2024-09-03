@@ -9,11 +9,11 @@ Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencie
 
 ### 🌐 Connect
 
-Website: [@michaelycrypto.com](https://michaelycrypto.github.io/)
-X: [@michaelycrypto](https://twitter.com/michaelycrypto)
-GitHub: You're here! Feel free to explore my repos.
+- Website: [@michaelycrypto.com](https://michaelycrypto.github.io/)
+- X: [@michaelycrypto](https://twitter.com/michaelycrypto)
+- GitHub: You're here! Feel free to explore my repos.
 
 ### 💡 Let's Collaborate
 Interested in working together? Check out my projects and reach out!
 
-Happy coding! 🖥️✨
+### Happy coding! 🖥️✨
