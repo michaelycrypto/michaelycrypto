@@ -1,4 +1,4 @@
-Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencies and building cool stuff.
+👋 Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencies and building cool stuff.
 
 #### 🔍 Interests
 - AI Workflow
@@ -8,7 +8,7 @@ Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencie
 
 #### 🌐 Connect
 
-- Website: [@michaelycrypto.com](https://michaelycrypto.github.io/)
+- Website: [michaelycrypto.com](https://michaelycrypto.github.io/)
 - X: [@michaelycrypto](https://twitter.com/michaelycrypto)
 - GitHub: You're here! Feel free to explore my repos.
 
