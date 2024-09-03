@@ -1,4 +1,3 @@
-#### 🚀 About Me
 Hey there! I'm Michael, a tech enthusiast with a passion for AI, cryptocurrencies and building cool stuff.
 
 #### 🔍 Interests
