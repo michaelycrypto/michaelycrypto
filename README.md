@@ -9,6 +9,3 @@
 #### 🌐 Connect
 - Website: [michaelycrypto.com](https://michaelycrypto.github.io/)
 - X: [@michaelycrypto](https://twitter.com/michaelycrypto)
-
-#### 💡 Let's Collaborate
-Interested in working together? Check out my projects and reach out!
