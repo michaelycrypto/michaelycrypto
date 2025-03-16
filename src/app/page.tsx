@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import theme from '@/theme/config';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { DigitalExcellence } from '@/components/DigitalExcellence';
 
 // Enhanced theme configuration
 const globalStyles = `
@@ -119,24 +122,101 @@ const globalStyles = `
     opacity: 1;
   }
 }
+
+/* Added styles for scroll-triggered ball animation */
+.ball {
+  will-change: transform;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(99, 102, 241, 0.9),
+    rgba(99, 102, 241, 0.4) 50%,
+    rgba(79, 70, 229, 0.2)
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 40px rgba(99, 102, 241, 0.2),
+    0 0 20px rgba(99, 102, 241, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.ball::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg,
+    rgba(99, 102, 241, 0.5),
+    transparent 40%,
+    transparent 60%,
+    rgba(79, 70, 229, 0.5)
+  );
+  filter: blur(4px);
+  animation: rotateBorder 4s linear infinite;
+}
+
+.ball::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 70% 70%,
+    rgba(255, 255, 255, 0.2),
+    transparent 40%
+  );
+}
+
+@keyframes rotateBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ball-hover {
+  animation:
+    floatBall 3s ease-in-out infinite,
+    glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes floatBall {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 40px rgba(99, 102, 241, 0.2),
+      0 0 20px rgba(99, 102, 241, 0.1),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 60px rgba(99, 102, 241, 0.3),
+      0 0 30px rgba(99, 102, 241, 0.2),
+      inset 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
 `;
 
 // Add these data structures before the Page component
 const services = [
   {
     number: "01",
-    title: "Digital Strategy",
-    description: "Strategic solutions that transform your digital presence and drive results."
+    title: "Digital Sovereignty",
+    description: "Give your users the freedom they deserve. We create digital experiences that respect choices, protect privacy, and build lasting trust through transparent data practices."
   },
   {
     number: "02",
-    title: "UI/UX Design",
-    description: "Crafting intuitive interfaces and memorable user experiences."
+    title: "Privacy-First Design",
+    description: "Make privacy feel natural and effortless. Our intuitive designs turn complex security features into seamless experiences that users love to engage with."
   },
   {
     number: "03",
-    title: "Development",
-    description: "Building robust, scalable applications with cutting-edge technology."
+    title: "Web3 Innovation",
+    description: "Harness the power of decentralized technology. We build blockchain-powered solutions that give users true ownership of their digital assets while maintaining an intuitive, accessible experience."
   }
 ];
 
@@ -532,6 +612,7 @@ const heroAnimations = {
 export default function Page() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
+  const ballRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -578,6 +659,54 @@ export default function Page() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ball = ballRef.current;
+    if (!ball) return;
+
+    // Set initial state immediately
+    gsap.set(ball, {
+      y: '-25vh',
+      scale: 1,
+      opacity: 0
+    });
+
+    // Create a simpler, more natural timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about',
+        start: "top bottom",
+        end: "center center",
+        scrub: 5,
+        onEnter: () => {
+          gsap.set(ball, { opacity: 1 });
+        },
+        onLeaveBack: () => {
+          gsap.set(ball, { opacity: 0 });
+        }
+      }
+    });
+
+    // Simplified animation sequence
+    tl.to(ball, {
+      y: '-25vh',
+      scale: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    })
+    .to(ball, {
+      y: '100vh',
+      scale: 8,
+      duration: 0.4,
+      ease: 'power1.in'
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
     <main className="min-h-screen">
       {/* Hero Section - Refined Asymmetrical Layout */}
@@ -587,21 +716,21 @@ export default function Page() {
           <div className="col-span-12 lg:col-span-8 xl:col-span-7 space-y-8 relative z-10">
             <h1 className="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tight leading-[0.9]">
               <span className="block text-white opacity-90 transform hover:translate-x-2 transition-transform duration-300">
-                Crafting
+                Shaping
               </span>
               <span className="block text-[var(--accent-red)] mt-4 transform hover:-translate-x-2 transition-transform duration-300">
-                Digital Magic
+                Digital Freedom
               </span>
             </h1>
             <p className="text-2xl text-[var(--text-secondary)] max-w-xl ml-auto">
-              We transform ideas into exceptional digital experiences that inspire and engage.
+              We craft transformative digital experiences that empower human potential while fiercely protecting individual privacy and autonomy.
             </p>
             <div className="flex flex-wrap gap-6 pt-8 justify-end">
               <button className="btn-noir-red px-12 py-4 transform hover:translate-y-[-4px] transition-all duration-300 rounded">
-                View Our Work
+                Explore Our Vision
               </button>
               <button className="btn-noir px-8 py-4 transform hover:translate-x-2 transition-all duration-300 rounded">
-                Get in Touch
+                Start a Conversation
               </button>
             </div>
           </div>
@@ -641,60 +770,42 @@ export default function Page() {
           <div className="absolute -bottom-24 right-1/3 w-[500px] h-[500px] bg-[#1E293B] rounded-full opacity-[0.03] blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto">
           <div className="grid grid-cols-12 gap-12 items-center">
             {/* Left Content - Primary Reading Flow */}
             <div className="col-span-12 lg:col-span-7 xl:col-span-6 lg:col-start-1 space-y-8">
               <h2 className="text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.9] tracking-tight">
                 <span className="block text-[#1E293B] transform hover:translate-x-2 transition-transform duration-300">
-                  Digital Excellence
+                  Crafting Digital
                 </span>
                 {/* Secondary line follows natural eye movement */}
                 <span className="block text-[#0066FF] mt-4 transform hover:-translate-x-2 transition-transform duration-300 translate-x-[8%]">
-                  By Design
+                  Experiences
                 </span>
               </h2>
               {/* Content follows F-pattern reading */}
               <p className="text-2xl text-[#475569] max-w-xl translate-x-[12%]">
-                We're a collective of digital craftsmen who believe in the power of thoughtful design
-                and innovative technology to create meaningful impact.
+                We're digital artisans who blend cutting-edge technology with human-centered design. Our solutions
+                empower users with both privacy and exceptional experiences, setting new standards for digital sovereignty.
               </p>
               {/* CTAs aligned with content progression */}
               <div className="flex flex-wrap gap-6 pt-8 translate-x-[16%]">
                 <button className="btn-noir-blue px-12 py-4 rounded transform hover:translate-y-[-4px] transition-all duration-300">
-                  View Our Work
+                  Explore Portfolio
                 </button>
                 <button className="btn-noir px-8 py-4 rounded transform hover:translate-x-2 transition-all duration-300">
-                  Learn More
+                  Our Process
                 </button>
               </div>
             </div>
 
-            {/* Right Content - Visual Balance & Interaction Zone */}
-            <div className="col-span-12 lg:col-span-4 xl:col-span-5 lg:col-start-8 relative mt-12 lg:mt-0 translate-y-[10%]">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#1E293B]/5 to-transparent p-1">
-                {/* Interactive Grid - Progressive Disclosure */}
-                <div className="grid grid-cols-3 gap-4 p-8 h-full">
-                  {[1, 2, 3, 4, 5].map((_, index) => (
-                    <div
-                      key={index}
-                      className={`rounded-xl bg-gradient-to-br backdrop-blur-lg
-                        ${index % 2 === 0 ? 'from-[#0066FF]' : 'from-[#1E293B]'}
-                        to-transparent opacity-10
-                        transform hover:scale-105 transition-all duration-500
-                        ${index === 2 ? 'col-span-2 translate-x-[5%]' : ''}
-                        ${index === 3 ? 'col-span-2 -translate-x-[5%]' : ''}
-                        ${index === 1 ? 'translate-y-[20%]' : ''}
-                        ${index === 4 ? '-translate-y-[15%]' : ''}
-                        ${index === 0 ? 'translate-x-[10%]' : ''}`}
-                      style={{
-                        aspectRatio: index === 1 ? '1/2' : '1/1',
-                        transform: `rotate(${index * 12}deg)`, // Consistent rotation
-                        transitionDelay: `${index * 50}ms`, // Progressive animation
-                      }}
-                    />
-                  ))}
-                </div>
+            {/* Right Content - Ball Animation */}
+            <div className="col-span-12 lg:col-span-4 xl:col-span-5 lg:col-start-8 relative h-[600px]">
+              <div className="sticky top-1/2 -translate-y-1/2 h-[600px] flex items-center justify-center">
+                <div
+                  className="ball w-32 h-32 rounded-full bg-gradient-to-br from-[#0066FF] to-[#1E293B] shadow-lg"
+                  ref={ballRef}
+                />
               </div>
             </div>
           </div>
@@ -708,8 +819,13 @@ export default function Page() {
           <div className="text-center mb-20">
             <span className="text-[var(--accent-red)] text-lg font-medium mb-4 block">Our Expertise</span>
             <h2 className="text-5xl font-bold text-[var(--text-primary)] relative">
-              Services that Drive Digital Excellence
+              Digital Freedom,
+              By Design
             </h2>
+            <p className="text-[var(--text-secondary)] mt-6 text-lg max-w-2xl mx-auto">
+              Wondering how we balance privacy with great UX? Our approach puts users first,
+              delivering intuitive experiences while protecting digital rights.
+            </p>
           </div>
 
           {/* Services Grid - Symmetric Three Columns */}
