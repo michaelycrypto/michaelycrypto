@@ -169,7 +169,6 @@ export const theme = {
   },
   shadows: {
     sm: 'var(--shadow-sm)',
-    md: 'var(--shadow-md)',
     lg: 'var(--shadow-lg)',
     glow: 'var(--shadow-glow)',
   },
@@ -209,8 +208,13 @@ export const theme = {
       hover: 'var(--shadow-lg), 0 0 0 2px var(--accent-glow)',
       active: 'var(--shadow-md), 0 0 0 3px var(--accent-glow)',
     }
-  }
-};
+  },
+  glass: {
+    background: 'var(--glass-bg)',
+    border: 'var(--glass-border)',
+    blur: 'var(--glass-blur)',
+  },
+}
 
 export const customProperties = `
   /* Accent glows */

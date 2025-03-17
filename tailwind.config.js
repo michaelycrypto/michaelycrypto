@@ -57,10 +57,12 @@ module.exports = {
         'text': {
           light: '#1E293B',
           dark: '#F8FAFC',
-        }
+        },
+        'glass': 'var(--glass-bg)',
       },
       borderColor: {
         DEFAULT: 'rgba(255, 255, 255, 0.1)', // Default border color
+        'glass': 'var(--glass-border)',
       },
       // Enable opacity for borders
       borderOpacity: {
@@ -191,9 +193,12 @@ module.exports = {
         'md': 'var(--shadow-md)',
         'lg': 'var(--shadow-lg)',
         'accent': '0 4px 14px 0 var(--accent-muted)',
+        'neo': 'var(--shadow-sm)',
+        'neo-hover': 'var(--shadow-lg), var(--shadow-glow)',
       },
       backdropBlur: {
         'xs': '2px',
+        'glass': 'var(--glass-blur)',
       },
       cursor: {
         'fancy': 'none',
@@ -210,6 +215,9 @@ module.exports = {
       maxWidth: {
         content: '1280px',
         text: '640px',
+      },
+      backgroundColor: {
+        'glass': 'var(--glass-bg)',
       },
     },
   },
