@@ -1,3 +1,4 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,6 +101,7 @@
   html {
     @apply scroll-smooth antialiased bg-[var(--surface-void)];
     font-feature-settings: "salt" 1, "ss01" 1, "ss02" 1;
+    font-family: 'Clash Display', sans-serif;
   }
 
   body {
@@ -109,6 +111,10 @@
   }
 
   /* Refined typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Clash Display', sans-serif;
+  }
+
   h1 {
     @apply text-[clamp(4rem,10vw,7rem)] font-medium tracking-[-0.02em] leading-[1] mb-8;
   }
