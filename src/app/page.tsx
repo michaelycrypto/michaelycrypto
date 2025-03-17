@@ -16,8 +16,8 @@ export default function Page() {
     <main className="min-h-screen">
       <Hero />
       <About />
-      <Services />
       <Process />
+      <Services />
       <Team />
       <Contact />
       <Footer />
