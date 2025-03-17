@@ -15,8 +15,8 @@ const AnimatedSphere = () => {
     <MeshDistortMaterial
       color="#ffffff"
       attach="material"
-      distort={0.3} // Reduced distortion for smoother look
-      speed={0.3} // Slower speed
+      distort={0.5} // Reduced distortion for smoother look
+      speed={0.1} // Slower speed
       roughness={0}
       metalness={0}
       emissive="#ffffff"
