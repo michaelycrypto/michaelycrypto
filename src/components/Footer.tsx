@@ -1,8 +1,8 @@
 import { socialLinks } from '@/data/content';
 
 const footerLinks = {
-  company: ['About', 'Services', 'Work', 'Blog'],
-  services: ['Strategy', 'Design', 'Development', 'Marketing'],
+  company: ['About', 'Mission', 'Technology', 'Blog'],
+  services: ['Privacy Tools', 'Security', 'Data Control', 'Integration'],
 };
 
 export const Footer = () => {
@@ -13,38 +13,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Brand Column */}
           <div className="md:col-span-4 space-y-6">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-red)]
-                           to-[var(--accent-red-dark)] shadow-lg shadow-[var(--accent-red-glow)]" />
-              <h4 className="text-2xl font-bold text-[var(--text-primary)]">Studio</h4>
-            </div>
-            <p className="text-[var(--text-secondary)] leading-relaxed">
-              Crafting digital experiences that inspire, engage, and deliver exceptional results
-              for forward-thinking brands.
-            </p>
-            {/* Social Links */}
-            <div className="flex gap-4 mt-6">
-              {socialLinks.map(link => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  className="group relative w-10 h-10 rounded-full bg-[var(--surface-card)]
-                          flex items-center justify-center border border-[rgba(255,255,255,0.1)]
-                          hover:border-[var(--accent-red)] hover:bg-[var(--accent-red)]
-                          transition-all duration-300"
-                >
-                  <span className="text-[var(--text-secondary)] group-hover:text-white
-                               transition-colors">
-                    {link.name.charAt(0)}
-                  </span>
-                </a>
-              ))}
-            </div>
+            <h4 className="text-2xl font-bold text-[var(--text-primary)]">@michaelycrypto</h4>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-2 space-y-6">
-            <h5 className="text-[var(--text-primary)] font-medium mb-4">Company</h5>
+            <h5 className="text-[var(--text-primary)] font-medium mb-4">About</h5>
             <ul className="space-y-3">
               {footerLinks.company.map(item => (
                 <li key={item}>
@@ -76,11 +50,11 @@ export const Footer = () => {
           <div className="md:col-span-4 space-y-6">
             <h5 className="text-[var(--text-primary)] font-medium mb-4">Get in Touch</h5>
             <div className="space-y-4">
-              <ContactLink href="mailto:hello@studio.com" text="hello@studio.com" />
-              <ContactLink href="tel:+1234567890" text="+1 (234) 567-890" />
+              <ContactLink href="mailto:contact@digitalfreedom.com" text="contact@digitalfreedom.com" />
+              <ContactLink href="tel:+18005551234" text="+1 (800) 555-1234" />
               <p className="text-[var(--text-secondary)]">
-                123 Design Street<br />
-                Creative City, DC 10001
+                Privacy Plaza<br />
+                Silicon Valley, CA 94025
               </p>
             </div>
           </div>
@@ -92,7 +66,7 @@ export const Footer = () => {
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[var(--text-tertiary)] text-sm">
-              © 2024 Studio. All rights reserved.
+              © 2024 Digital Freedom. All rights reserved.
             </p>
             <div className="flex gap-6">
               <FooterLink href="#" text="Privacy Policy" />

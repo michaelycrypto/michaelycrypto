@@ -41,36 +41,8 @@ const AnimatedSphere = () => {
 };
 
 export const About = () => {
-  const ballRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ball = ballRef.current;
-    if (!ball) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#about',
-        start: "top bottom",
-        end: "center center",
-        scrub: 1.5, // Increased scrub time for smoother scrolling animation
-        ease: "power2.out" // Smoother easing
-      }
-    });
-
-    tl.fromTo(ball,
-      { y: 0, scale: 1, opacity: 0 },
-      { y: '30vh', scale: 3, opacity: 1, duration: 1, ease: 'power2.out' }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-      tl.kill();
-    };
-  }, []);
-
   return (
-    <section id="about" className="relative min-h-screen bg-blue-600 overflow-hidden">
+    <section id="about" className="relative min-h-screen bg-[var(--accent-red)] overflow-hidden">
       {/* Centered and enlarged sphere */}
       <div className="absolute inset-0 w-full h-full">
         <Canvas
@@ -101,10 +73,10 @@ export const About = () => {
           <div className="col-span-12 lg:col-span-10 mb-8">
             <h2 className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-tight leading-[0.9]">
               <span className="block text-[var(--noir-void)] transform hover:translate-x-2 transition-transform duration-300">
-                Crafting Digital
+                Your Data.
               </span>
-              <span className="block text-blue-600 mt-4 transform hover:-translate-x-2 transition-transform duration-300 ml-[12%]">
-                Experiences
+              <span className="block text-[var(--accent-red)] mt-4 transform hover:-translate-x-2 transition-transform duration-300 ml-[15%]">
+                Your Control.
               </span>
             </h2>
           </div>
@@ -112,24 +84,15 @@ export const About = () => {
           {/* Description section - refined layout */}
           <div className="col-span-12 lg:col-span-6 lg:col-start-5 space-y-6">
             <p className="text-2xl text-gray-600 max-w-xl">
-              We're digital artisans who blend cutting-edge technology with human-centered design. Our solutions
-              empower users with both privacy and exceptional experiences.
+              In a world of centralized systems, we're building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
             </p>
-            <div className="flex flex-wrap gap-6 pt-8 justify-start">
-              <button className="btn-noir-blue rounded px-12 py-4">
-                Explore Portfolio
-              </button>
-              <button className="btn-noir rounded px-8 py-4">
-                Our Process
-              </button>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Smoother background gradients */}
       <div className="absolute inset-0 pointer-events-none opacity-60 transition-opacity duration-1000">
-        <div className="absolute top-[25%] left-[25%] w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[100px] animate-float" />
+        <div className="absolute top-[25%] left-[25%] w-[500px] h-[500px] bg-red-400/10 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-[25%] right-[25%] w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px] animate-float animation-delay-500" />
       </div>
 

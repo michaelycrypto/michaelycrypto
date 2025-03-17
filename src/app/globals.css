@@ -12,8 +12,11 @@
   --noir-surface: #161616;
 
   /* Dramatic Accents */
-  --accent-red: #FF2D55;
-  --accent-red-bright: #FF3B30;
+  --accent-red: #E01B3C;  /* Less bright, more sophisticated base red */
+  --accent-red-bright: #F0213F;  /* Toned down bright variant */
+  --accent-red-deep: #B81532;  /* Deeper, richer red */
+  --accent-red-muted: #8F1128;  /* More muted red for subtle elements */
+  --accent-red-glow: rgba(224, 27, 60, 0.2);  /* Softer glow effect */
   --accent-blue: #0066FF;
   --accent-blue-bright: #00AAFF;
 

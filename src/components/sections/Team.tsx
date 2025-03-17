@@ -1,134 +1,51 @@
-const teamMembers = [
-  {
-    name: "Alex Rivera",
-    role: "Creative Director",
-    image: "https://placehold.co/400x400/3B82F6/FFFFFF?text=AR"
-  },
-  {
-    name: "Sarah Chen",
-    role: "Lead Designer",
-    image: "https://placehold.co/400x400/EF4444/FFFFFF?text=SC"
-  },
-  {
-    name: "Marcus Kim",
-    role: "Tech Lead",
-    image: "https://placehold.co/400x400/8B5CF6/FFFFFF?text=MK"
-  }
-];
+const teamMember = {
+  name: "@michaelycrypto",
+  role: "Builder & Strategist",
+  image: "/profile.jpg",
+  bio: "Full-stack developer and web3 entrepreneur merging technical expertise with strategic vision. Passionate about building decentralized solutions that empower users while pushing the boundaries of digital innovation."
+};
 
 export const Team = () => {
   return (
-    <section id="team" className="relative py-32 px-6 bg-[#F8FAFC] overflow-hidden">
-      {/* Background Gradient Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-[var(--accent-blue)] rounded-full opacity-[0.03] blur-3xl" />
-        <div className="absolute -bottom-24 left-1/3 w-[400px] h-[400px] bg-[#1E293B] rounded-full opacity-[0.03] blur-3xl" />
-      </div>
+    <section id="team" className="relative bg-[#EBEBED]">
+      <div className="container mx-auto px-6 py-20">
+        <div className="max-w-3xl mx-auto">
+          <div className="p-8 md:p-12">
+            <div className="space-y-10">
+              {/* Profile Header */}
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-[var(--noir-void)] tracking-tight">
+                  {teamMember.name}
+                </h3>
+                <p className="text-lg text-gray-600 font-medium">
+                  {teamMember.role}
+                </p>
+              </div>
 
-      <div className="container mx-auto">
-        {/* Header - Asymmetric Layout */}
-        <div className="grid grid-cols-12 gap-12 items-end mb-24">
-          <div className="col-span-12 lg:col-span-6 space-y-6">
-            <h2 className="text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.9] tracking-tight">
-              <span className="block text-[#1E293B] transform hover:translate-x-2 transition-transform duration-300">
-                Meet Our
-              </span>
-              <span className="block text-[var(--accent-blue)] mt-4 transform hover:-translate-x-2 transition-transform duration-300 translate-x-[8%]">
-                Creative Team
-              </span>
-            </h2>
-          </div>
-          <div className="col-span-12 lg:col-span-5 lg:col-start-8">
-            <p className="text-xl text-[#475569] leading-relaxed">
-              A collective of innovative minds passionate about crafting exceptional digital experiences that push boundaries and inspire change.
-            </p>
-          </div>
-        </div>
+              <div className="space-y-6">
+                <div className="relative">
+                  <div className="absolute top-0 w-1 h-full bg-[var(--accent-red)] rounded-full"></div>
+                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed pl-6">
+                    {teamMember.bio}
+                  </p>
+                </div>
 
-        {/* Team Grid - Dynamic Layout */}
-        <div className="grid grid-cols-12 gap-8">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className={`group relative col-span-12 md:col-span-6 lg:col-span-4
-                ${index === 1 ? 'lg:translate-y-12' : ''}
-                ${index === 2 ? 'lg:translate-y-24' : ''}`}
-            >
-              {/* Member Card */}
-              <div className="relative bg-white rounded-2xl overflow-hidden p-6 transition-all duration-500
-                            hover:shadow-xl hover:shadow-[var(--accent-blue)]/10
-                            border border-black/5 hover:border-[var(--accent-blue)]/20">
-                {/* Image Container */}
-                <div className="relative mb-8 aspect-square rounded-xl overflow-hidden">
+                <div className="flex flex-col md:flex-row items-start gap-6 pt-4">
                   <img
-                    src={member.image}
-                    alt={member.name}
-                    className="object-cover w-full h-full transform transition-transform duration-700
-                             group-hover:scale-105"
+                    src={teamMember.image}
+                    alt={teamMember.name}
+                    className="w-20 h-20 rounded-md object-cover"
                   />
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent
-                               opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <blockquote className="flex-1 bg-gray-50 rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] px-9 py-5 pb-0">
+                    <p className="text-gray-700 text-lg leading-relaxed italic">
+                      I combine hands-on experience with practical insights to help teams build products that respect user freedom. Having been both a user and builder, I understand what makes self-sovereign products succeed in the real world.
+                    </p>
+                  </blockquote>
                 </div>
-
-                {/* Content */}
-                <div className="relative z-10 space-y-4">
-                  <h3 className="text-2xl font-bold text-[#1E293B] group-hover:text-[var(--accent-blue)]
-                               transition-colors duration-300">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#475569] font-medium">{member.role}</p>
-
-                  {/* Interactive Elements */}
-                  <div className="pt-6 flex items-center justify-between">
-                    <button className="text-[#1E293B] font-medium group-hover:text-[var(--accent-blue)]
-                                    transition-colors duration-300 flex items-center gap-2">
-                      <span>View Profile</span>
-                      <svg
-                        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </button>
-
-                    {/* Social Links */}
-                    <div className="flex gap-3">
-                      <SocialLink icon="linkedin" />
-                      <SocialLink icon="twitter" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r
-                             from-[var(--accent-blue)] to-transparent scale-x-0
-                             group-hover:scale-x-100 transition-transform duration-500
-                             origin-left" />
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-24 text-center">
-          <button className="inline-flex items-center gap-3 text-lg font-medium
-                          text-[var(--text-secondary)] hover:text-[var(--accent-red)]
-                          transition-colors duration-300">
-            <span>Join Our Team</span>
-            <svg
-              className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+          </div>
         </div>
       </div>
     </section>
@@ -160,7 +77,7 @@ const SocialLink = ({ icon }: SocialLinkProps) => {
   };
 
   return (
-    <button className="text-[#475569] hover:text-[var(--accent-blue)]
+    <button className="text-gray-500 hover:text-[var(--accent-blue)]
                      transition-colors duration-300">
       <IconComponent />
     </button>

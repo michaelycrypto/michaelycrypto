@@ -169,25 +169,35 @@ const Globe = () => {
 
 export const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen bg-[var(--surface-void)] overflow-hidden">
-      {/* Move the Canvas outside the grid and make it a background element */}
-      <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] lg:w-[1000px] lg:h-[1000px]">
+    <section id="hero" className="relative min-h-[100svh] bg-[var(--surface-void)] overflow-hidden">
+      {/* Improved Globe positioning and sizing for mobile */}
+      <div className="absolute
+        sm:bottom-[-20%] sm:right-[-10%]
+        bottom-[-15%] right-[-15%]
+        w-[400px] h-[400px]
+        xs:w-[500px] xs:h-[500px]
+        sm:w-[600px] sm:h-[600px]
+        lg:w-[800px] lg:h-[800px]
+        xl:w-[1000px] xl:h-[1000px]
+        opacity-100
+        transition-all duration-300"
+      >
         <Canvas
           camera={{
             position: [3, 2, 3],
             fov: 40,
             near: 0.1,
-            far: 100 // Reduced from 1000
+            far: 100
           }}
           style={{ background: 'transparent' }}
           gl={{
             alpha: true,
-            antialias: false, // Disabled antialiasing
+            antialias: false,
             powerPreference: "high-performance",
             stencil: false,
             depth: true
           }}
-          dpr={[1, 2]} // Limit max pixel ratio
+          dpr={[1, 2]} // Fixed DPR value instead of using window.devicePixelRatio
         >
           <ambientLight intensity={0.4} />
           <pointLight position={[5, 5, 5]} intensity={1.0} />
@@ -196,24 +206,68 @@ export const Hero = () => {
         </Canvas>
       </div>
 
-      <div className="container mx-auto px-6 py-24 grid grid-cols-12 gap-12 items-center">
-        <div className="col-span-12 lg:col-span-8 xl:col-span-7 space-y-8 relative z-10">
-          <h1 className="text-[clamp(3rem,8vw,8rem)] font-bold tracking-tight leading-[0.9]">
-            <span className="block text-white opacity-90 transform hover:translate-x-2 transition-transform duration-300">
+      {/* Improved content layout and spacing */}
+      <div className="container mx-auto
+        px-4 sm:px-6
+        pt-16 pb-12 sm:py-12 lg:py-24
+        min-h-[100svh]
+        flex flex-col justify-center"
+      >
+        <div className="relative z-10
+          max-w-[540px] sm:max-w-none
+          mx-auto sm:mx-0
+          text-center sm:text-left"
+        >
+          {/* Improved heading responsiveness */}
+          <h1 className="text-[clamp(2.75rem,8vw,8rem)] font-bold tracking-tight leading-[0.9]">
+            <span className="block text-white opacity-90
+              transform hover:translate-x-2 transition-transform duration-300
+              text-balance"
+            >
               Shaping
             </span>
-            <span className="block text-[var(--accent-red)] mt-4 transform hover:-translate-x-2 transition-transform duration-300">
+            <span className="block text-[var(--accent-red)]
+              mt-2 sm:mt-4
+              transform hover:-translate-x-2 transition-transform duration-300
+              text-balance"
+            >
               Digital Freedom
             </span>
           </h1>
-          <p className="text-2xl text-[var(--text-secondary)] max-w-xl ml-auto">
+
+          {/* Improved paragraph layout */}
+          <p className="text-lg sm:text-xl lg:text-2xl
+            text-[var(--text-secondary)]
+            max-w-[90%] sm:max-w-xl
+            mx-auto sm:mx-0
+            mt-6 sm:mt-8
+            text-balance"
+          >
             We craft transformative digital experiences that empower human potential while fiercely protecting individual privacy and autonomy.
           </p>
-          <div className="flex flex-wrap gap-6 pt-8 justify-end">
-            <button className="btn-noir-red rounded px-12 py-4">
+
+          {/* Improved button layout */}
+          <div className="flex flex-col sm:flex-row
+            gap-3 sm:gap-6
+            mt-8 sm:mt-10
+            sm:justify-start justify-center"
+          >
+            <button className="btn-noir-red rounded-lg
+              px-8 sm:px-12
+              py-4
+              w-full sm:w-auto
+              text-lg
+              hover:scale-105 transition-transform"
+            >
               Explore Our Vision
             </button>
-            <button className="btn-noir rounded px-8 py-4">
+            <button className="btn-noir rounded-lg
+              px-6 sm:px-8
+              py-4
+              w-full sm:w-auto
+              text-lg
+              hover:scale-105 transition-transform"
+            >
               Start a Conversation
             </button>
           </div>

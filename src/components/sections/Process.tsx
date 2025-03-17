@@ -147,7 +147,7 @@ export const Process = () => {
                 onClick={() => !isAnimating && setActiveIndex(index)}
                 className={`group relative h-3 rounded-full transition-all duration-300
                            ${index === activeIndex
-                             ? 'w-12 bg-[var(--accent-blue)]'
+                             ? 'w-12 bg-[var(--accent-red)]'
                              : 'w-3 bg-[var(--text-secondary)] opacity-50 hover:opacity-100'}`}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={index === activeIndex ? 'true' : 'false'}
@@ -175,18 +175,18 @@ interface ProcessCardProps {
 
 const ProcessCard = ({ step, isActive }: ProcessCardProps) => {
   const cardClasses = isActive
-    ? "bg-[var(--surface-elevated)] rounded-2xl p-12 h-full border border-[var(--accent-blue)] shadow-lg shadow-[var(--accent-blue)]/10 backdrop-blur-lg"
+    ? "bg-[var(--surface-elevated)] rounded-2xl p-12 h-full border border-[var(--accent-red)] shadow-lg shadow-[var(--accent-red)]/10 backdrop-blur-lg"
     : "bg-[var(--surface-elevated)]/30 rounded-xl p-6 border border-[rgba(255,255,255,0.05)] backdrop-blur-sm";
 
   return (
     <div className={cardClasses}>
       {/* Step Number */}
-      <div className={`text-[var(--accent-blue)]${isActive ? '/90' : '/50'} font-mono ${isActive ? 'text-4xl' : 'text-3xl'} mb-${isActive ? '8' : '3'}`}>
+      <div className={`text-[var(--accent-red)] font-mono ${isActive ? 'text-4xl' : 'text-3xl'} mb-${isActive ? '8' : '3'}`}>
         {step.step}
       </div>
 
       {isActive && (
-        <div className="absolute top-12 right-12 text-[var(--accent-blue)]">
+        <div className="absolute top-12 right-12 text-[var(--accent-red)]">
           {step.icon}
         </div>
       )}
@@ -204,12 +204,12 @@ const ProcessCard = ({ step, isActive }: ProcessCardProps) => {
           {/* Progress Indicator */}
           <div className="mt-10 space-y-4">
             <div className="flex items-center gap-4">
-              <span className="text-[var(--accent-blue)] font-mono text-lg">
+              <span className="text-[var(--accent-red)] font-mono text-lg">
                 {step.step}
               </span>
-              <div className="flex-1 h-1 bg-[var(--accent-blue)]/20 rounded-full relative">
+              <div className="flex-1 h-1 bg-[var(--accent-red)]/20 rounded-full relative">
                 <div
-                  className="absolute inset-y-0 left-0 bg-[var(--accent-blue)] rounded-full"
+                  className="absolute inset-y-0 left-0 bg-[var(--accent-red)] rounded-full"
                   style={{
                     width: `${(parseInt(step.step) / processSteps.length) * 100}%`,
                     transition: 'width 0.5s ease-out'
