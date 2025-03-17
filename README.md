@@ -1,39 +1,59 @@
-# Next.js Project with Tailwind CSS and Light/Dark Theme
+# Modern Next.js Web Application
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that includes Tailwind CSS and a light/dark theme toggle.
+A sophisticated web application built with Next.js 15.
 
-## Features
+## 🚀 Features
 
-- **Next.js 15** with App Router
-- **Tailwind CSS** for styling
-- **Light/Dark Theme** with system preference support
-- **TypeScript** for type safety
+- **Next.js 15** with App Router for optimal performance
+- **Responsive Design** with Tailwind CSS
+- **Modern Typography** using Geist and Clash Display fonts
+- **3D Graphics** integration with Three.js
 
-## Getting Started
+## 🛠 Tech Stack
 
-First, run the development server:
+- Next.js 15.2.2
+- React 19
+- Tailwind CSS 3.4
+- Three.js
+- Framer Motion
+- GSAP
+- TypeScript
+
+## 🏃‍♂️ Getting Started
+
+1. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. **Run the development server**
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Theme Implementation
+## 🎨 Theme System
 
-The theme implementation uses React Context to manage the theme state. The theme can be set to:
+The application includes a sophisticated theme system that:
+- Follows system preferences
+- Persists user preferences in localStorage
+- Provides smooth transitions between themes
 
-- Light
-- Dark
-- System (follows the system preference)
-
-The theme preference is stored in localStorage and persists across page refreshes.
+## 📦 Project Structure
 
 ## Learn More
 
