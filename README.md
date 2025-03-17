@@ -1,69 +1,87 @@
-# Modern Next.js Web Application
+# Modern Digital Agency Landing Page Prompt
 
-A sophisticated web application built with Next.js 15.
+## Overall Style & Theme
+- Minimalist, high-end aesthetic with dark mode emphasis
+- Strong emphasis on typography with dramatic scaling
+- Fluid, responsive design with smooth transitions
+- Abstract geometric elements and 3D visualization
+- Focus on negative space and dramatic contrast
 
-## 🚀 Features
+## Visual Components
 
-- **Next.js 15** with App Router for optimal performance
-- **Responsive Design** with Tailwind CSS
-- **Modern Typography** using Geist and Clash Display fonts
-- **3D Graphics** integration with Three.js
+### Hero Section
+- Full-height (100svh) section with dark background
+- Interactive 3D globe visualization (right/bottom positioned)
+- Large, bold typography with dynamic hover effects
+- Two-part heading: "Shaping" (white) and "Digital Freedom" (accent red)
+- Responsive text scaling using clamp (2.75rem to 8rem)
+- Subtle hover animations on text elements
 
-## 🛠 Tech Stack
+### About Section
+- Clean, grid-based layout
+- Large typography with "Your Data. Your Control." messaging
+- Floating gradient orbs in background (red and white)
+- Decorative line elements
+- Two-column layout on larger screens
 
-- Next.js 15.2.2
-- React 19
-- Tailwind CSS 3.4
-- Three.js
-- Framer Motion
-- GSAP
-- TypeScript
+### Visual Effects
+- Smooth background gradients with blur effects
+- Floating animations for background elements
+- Subtle hover transitions (300ms duration)
+- High-performance 3D rendering with optimized settings
+- Glass-morphism effects
 
-## 🏃‍♂️ Getting Started
+## Technical Specifications
 
-1. **Clone the repository**
+### Typography
+- Dynamic font scaling using clamp()
+- Custom font implementation (Geist and Clash Display)
+- Balanced text layouts using text-balance
+- Dramatic leading (0.9) for headings
 
-```bash
-git clone <repository-url>
-cd <project-directory>
-```
+### Layout
+- 12-column grid system
+- Responsive container with max-width constraints
+- Strategic use of negative space
+- Fluid spacing using relative units
 
-2. **Install dependencies**
+### Animation & Interactivity
+- Smooth transitions (300-700ms durations)
+- Hover state transforms on text elements
+- Custom cubic-bezier easing curves
+- Performance-optimized 3D rendering
 
-```bash
-npm install
-# or
-yarn install
-```
+### Color Scheme
+- Dark background with CSS variables for theming
+- Accent red for emphasis
+- Strategic use of opacity and blur
+- White/light text with varying opacity levels
 
-3. **Run the development server**
+### Responsive Design
+- Mobile-first approach
+- Breakpoint-specific layouts
+- Fluid typography scaling
+- Optimized 3D globe positioning for different screen sizes
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Performance Considerations
+- Optimized 3D rendering with fixed DPR
+- Efficient animation implementations
+- Controlled re-renders
+- Strategic use of CSS transforms
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+## Content Structure
+1. Hero section with 3D globe
+2. About section with mission statement
+3. Services overview
+4. Process explanation
+5. Team presentation
+6. Footer
 
-## 🎨 Theme System
-
-The application includes a sophisticated theme system that:
-- Follows system preferences
-- Persists user preferences in localStorage
-- Provides smooth transitions between themes
-
-## 📦 Project Structure
-
-## Learn More
-
-To learn more about Next.js and Tailwind CSS, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technical Implementation Notes
+- Built with Next.js 15
+- Tailwind CSS for styling
+- Three.js for 3D elements
+- TypeScript for type safety
+- GSAP for advanced animations
+- Responsive design breakpoints
+- CSS variable-based theming system
