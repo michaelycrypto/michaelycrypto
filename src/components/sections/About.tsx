@@ -59,9 +59,7 @@ export const About = () => {
           }}
           dpr={[1, 2]}
         >
-          <AnimatedSphere>
-            <meshBasicMaterial color="#FFFFFF" />
-          </AnimatedSphere>
+          <AnimatedSphere />
         </Canvas>
       </div>
 

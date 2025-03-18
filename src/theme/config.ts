@@ -107,18 +107,6 @@ export const theme = {
       blue: 'var(--accent-blue)',
       purple: 'var(--accent-purple)',
       success: 'var(--accent-success)',
-      red: {
-        main: '#FF2D55',
-        light: '#FF3B30',
-        dark: '#B91C1C',
-        gradient: 'linear-gradient(135deg, #FF2D55 0%, #B91C1C 100%)',
-      },
-      blue: {
-        main: '#0066FF',
-        light: '#00AAFF',
-        dark: '#0055CC',
-        gradient: 'linear-gradient(135deg, #0066FF 0%, #0055CC 100%)',
-      },
     },
     surface: {
       void: 'var(--surface-void)',

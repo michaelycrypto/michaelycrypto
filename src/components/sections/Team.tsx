@@ -43,7 +43,7 @@ export const Team = () => {
 
                   <blockquote className="flex-1 bg-gray-50 rounded- shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] px-8 py-5 pb-0">
                     <p className="text-gray-700 text-lg leading-relaxed italic">
-                      I believe in crypto&apos;s original vision - putting users back in control of their digital lives. Not your keys, not your coins. I'm building tools that make self-custody simple and give people true ownership of their assets, just as Satoshi intended.
+                      I believe in crypto&apos;s original vision - putting users back in control of their digital lives. Not your keys, not your coins. I&apos;m building tools that make self-custody simple and give people true ownership of their assets, just as Satoshi intended.
                     </p>
                   </blockquote>
                 </div>
@@ -53,37 +53,5 @@ export const Team = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-interface SocialLinkProps {
-  icon: 'linkedin' | 'twitter';
-}
-
-const SocialLink = ({ icon }: SocialLinkProps) => {
-  const IconComponent = () => {
-    switch (icon) {
-      case 'linkedin':
-        return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M21 13.5v2.25A2.25 2.25 0 0118.75 18h-7.5A2.25 2.25 0 019 15.75v-2.25M21 13.5V6.75A2.25 2.25 0 0018.75 4.5h-7.5A2.25 2.25 0 009 6.75v6.75m12-3H9m12 0v2.25A2.25 2.25 0 0118.75 15h-7.5A2.25 2.25 0 019 12.75V12m12 0H9" />
-          </svg>
-        );
-      case 'twitter':
-        return (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-          </svg>
-        );
-    }
-  };
-
-  return (
-    <button className="text-gray-500 hover:text-[var(--accent-blue)]
-                     transition-colors duration-300">
-      <IconComponent />
-    </button>
   );
 };

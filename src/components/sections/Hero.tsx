@@ -1,15 +1,10 @@
 import { useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Bloom, EffectComposer } from '@react-three/postprocessing'
 
 // Separate Globe component for the 3D rendering
 const Globe = () => {
   const meshRef = useRef<THREE.Group>(null);
-
-  // Cache geometries and materials
-  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(1.48, 32, 32), []); // Reduced segments
-
 
   // Initial tilt and position setup
   useEffect(() => {
@@ -55,7 +50,7 @@ const Globe = () => {
         <bufferGeometry>
           <float32BufferAttribute attach="attributes-position" args={[linePoints, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#FF2D55" transparent opacity={0.5} />
+        <lineBasicMaterial color="#d02e2e" transparent opacity={0.6} />
       </line>
     ));
   };
@@ -87,16 +82,13 @@ const Globe = () => {
         <bufferGeometry>
           <float32BufferAttribute attach="attributes-position" args={[linePoints, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#FF2D55" transparent opacity={0.5} />
+        <lineBasicMaterial color="#d02e2e" transparent opacity={0.6} />
       </line>
     ));
   };
 
   // Optimize grid creation with useMemo
   const { meridians, parallels } = useMemo(() => {
-    const meridianCount = 12; // Reduced from 16
-    const parallelCount = 5; // Reduced from 7
-
     return {
       meridians: createMeridians(),
       parallels: createParallels()
@@ -106,17 +98,6 @@ const Globe = () => {
   return (
     <>
       <group ref={meshRef}>
-        <mesh renderOrder={1}>
-          <primitive object={sphereGeometry} />
-          <meshPhongMaterial
-            color="#FF2D55"
-            transparent
-            opacity={0.02}
-            side={THREE.FrontSide}
-            depthWrite={false}
-            shininess={100}
-          />
-        </mesh>
 
         {/* Simplified grid rendering */}
         {meridians}
@@ -126,36 +107,16 @@ const Globe = () => {
         <mesh renderOrder={3}>
           <sphereGeometry args={[1.5, 32, 32]} /> {/* Reduced segments */}
           <meshBasicMaterial
-            color="#FF2D55"
+            color="#d02e2e"
             transparent
-            opacity={0.03}
+            opacity={0.15}
             side={THREE.BackSide}
             depthWrite={false}
           />
         </mesh>
 
-        {/* Atmospheric glow */}
-        <mesh renderOrder={1}>
-          <sphereGeometry args={[1.6, 64, 64]} />
-          <meshBasicMaterial
-            color="#FF2D55"
-            transparent
-            opacity={0.01}
-            side={THREE.BackSide}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
       </group>
 
-      {/* Optimized post-processing */}
-      <EffectComposer multisampling={0}> {/* Disabled multisampling */}
-        <Bloom
-          intensity={0.5}
-          luminanceThreshold={0.2} // Increased threshold
-          luminanceSmoothing={0.9}
-          radius={0.6} // Reduced radius
-        />
-      </EffectComposer>
     </>
   );
 };

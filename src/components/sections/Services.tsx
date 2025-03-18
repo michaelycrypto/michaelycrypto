@@ -153,22 +153,3 @@ const ServiceCard = ({ number, title, description, icon }: Service) => {
     </div>
   );
 };
-
-// Add these utility classes to your global CSS
-const globalStyles = `
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-`;
