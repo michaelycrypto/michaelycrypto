@@ -37,7 +37,7 @@ const processSteps = [
   {
     step: "04",
     title: "Development",
-    description: "Building robust, scalable solutions with a security-first mindset. Our development process emphasizes agile methodologies, security-first implementation, and continuous performance optimization.",
+    description: "We write code that works in the real world. No over-engineering - just clean, secure solutions built through rapid iteration, constant testing, and a focus on what actually matters.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -95,35 +95,27 @@ export const Process = () => {
   }, [activeIndex, isAnimating]);
 
   return (
-    <section id="process" className="relative min-h-screen py-24 lg:py-32 bg-[var(--surface-card)] overflow-hidden">
+    <section id="process" className="relative min-h-screen py-24 bg-[var(--surface-card)] overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Centered title section */}
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight leading-[1.1]">
-            <span className="block text-foreground-primary">
-              Development
-            </span>
-            <span className="block text-[var(--accent-red)] mt-2">
-              Process
-            </span>
-          </h2>
 
           {/* Refined description typography */}
           <div className="mt-6 mb-16">
-            <p className="text-lg sm:text-xl text-neutral-400 font-body max-w-2xl mx-auto">
-              We transform complex challenges into elegant solutions.
+            <p className="text-lg md:text-2xl text-neutral-400 font-body max-w-2xl mx-auto">
+              We believe in making blockchain technology feel natural and accessible. Our solutions evolve from real user needs, creating experiences that simply feel right.
             </p>
           </div>
         </div>
 
         {/* Process Carousel - simplified container */}
-        <div className="relative max-w-[90rem] mx-auto">
-          <div className="relative overflow-hidden px-4">
-            <div className="flex items-stretch justify-center gap-4">
+        <div className="relative w-full lg:max-w-[90rem] mx-auto">
+          <div className="relative overflow-hidden px-2 sm:px-4">
+            <div className="flex items-stretch justify-center gap-2 sm:gap-4">
               {/* Previous Card */}
               <button
                 onClick={() => handleCarouselRotate('prev')}
-                className="w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
+                className="w-32 sm:w-40 md:w-48 lg:w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
                 style={{
                   transform: `scale(0.9)`,
                   opacity: 0.8,
@@ -139,7 +131,7 @@ export const Process = () => {
               </button>
 
               {/* Active Card */}
-              <div className="w-[40rem] transition-all duration-100 transform relative z-10">
+              <div className="w-full sm:w-[28rem] md:w-[32rem] lg:w-[40rem] transition-all duration-100 transform relative z-10">
                 <ProcessCard
                   step={processSteps[displayIndex]}
                   isActive={true}
@@ -151,7 +143,7 @@ export const Process = () => {
               {/* Next Card */}
               <button
                 onClick={() => handleCarouselRotate('next')}
-                className="w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
+                className="w-32 sm:w-40 md:w-48 lg:w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
                 style={{
                   transform: `scale(0.9)`,
                   opacity: 0.8,
@@ -212,8 +204,8 @@ interface ProcessCardProps {
 
 const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps) => {
   const cardClasses = isActive
-    ? "bg-[var(--surface-elevated)] rounded-2xl p-8 sm:p-12 h-full border border-[var(--accent-red)] backdrop-blur-lg shadow-lg relative overflow-hidden"
-    : "bg-[var(--surface-elevated)]/50 rounded-xl p-6 sm:p-8 border border-[rgba(255,255,255,0.1)] backdrop-blur-sm hover:border-[rgba(255,255,255,0.2)] transition-all duration-100";
+    ? "bg-[var(--surface-elevated)] rounded-2xl p-6 sm:p-8 lg:p-12 h-full border border-[var(--accent-red)] backdrop-blur-lg shadow-lg relative overflow-hidden"
+    : "bg-[var(--surface-elevated)]/50 rounded-xl p-4 sm:p-6 lg:p-8 border border-[rgba(255,255,255,0.1)] backdrop-blur-sm hover:border-[rgba(255,255,255,0.2)] transition-all duration-100";
 
   return (
     <div className={cardClasses}>
@@ -252,7 +244,7 @@ const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps
                 {step.title}
               </h3>
 
-              <p className="font-body text-base sm:text-lg text-foreground-secondary leading-relaxed">
+              <p className="font-body text-base sm:text-lg text-neutral-400 leading-relaxed">
                 {step.description}
               </p>
 
@@ -266,7 +258,7 @@ const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps
               <div className="font-mono text-3xl text-[var(--accent-red)] font-bold mb-2">
                 {step.step}
               </div>
-              <h3 className="font-display text-lg text-foreground-primary/90 font-medium">
+              <h3 className="hidden lg:block font-display text-lg text-foreground-primary/90 font-medium">
                 {step.title}
               </h3>
             </div>

@@ -1,10 +1,8 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { smoothScroll } from '@/utils/smoothScroll';
 
 // Animated sphere component
 const AnimatedSphere = () => {
@@ -84,21 +82,44 @@ export const About = () => {
           {/* Description section - refined layout */}
           <div className="col-span-12 lg:col-span-6 lg:col-start-5 space-y-6">
             <p className="text-2xl text-gray-600 max-w-xl">
-              We're building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
+              We&apos;re building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Smoother background gradients */}
-      <div className="absolute inset-0 pointer-events-none opacity-60 transition-opacity duration-1000">
-        <div className="absolute top-[25%] left-[25%] w-[500px] h-[500px] bg-red-400/10 rounded-full blur-[100px] animate-float" />
-        <div className="absolute bottom-[25%] right-[25%] w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px] animate-float animation-delay-500" />
+      {/* Enhanced scroll button with improved UX */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <button
+          onClick={() => smoothScroll('#services')}
+          className="group
+            bg-transparent
+            text-[var(--noir-void)]
+            px-4 py-2
+            text-lg font-medium
+            flex items-center gap-2
+            opacity-80 hover:opacity-100
+            transition-opacity duration-200"
+          aria-label="Go to services section"
+        >
+          <span>
+            View Services
+          </span>
+          <svg
+            className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
       </div>
-
-      {/* Simplified decorative lines */}
-      <div className="absolute left-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-      <div className="absolute right-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-l from-transparent via-white/15 to-transparent" />
     </section>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 
@@ -10,13 +9,7 @@ const Globe = () => {
 
   // Cache geometries and materials
   const sphereGeometry = useMemo(() => new THREE.SphereGeometry(1.48, 32, 32), []); // Reduced segments
-  const gridMaterial = useMemo(() => new THREE.LineBasicMaterial({
-    color: "#FF2D55",
-    transparent: true,
-    opacity: 0.4,
-    depthWrite: false,
-    depthTest: true,
-  }), []);
+
 
   // Initial tilt and position setup
   useEffect(() => {
@@ -167,6 +160,14 @@ const Globe = () => {
   );
 };
 
+// Add smooth scroll utility at the component level
+const smoothScroll = (id: string) => {
+  document.querySelector(id)?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
+
 export const Hero = () => {
   return (
     <section id="hero" className="relative min-h-[100svh] bg-[var(--surface-void)] overflow-hidden">
@@ -247,30 +248,35 @@ export const Hero = () => {
           </p>
 
           {/* Improved button layout */}
-          <div className="flex flex-col sm:flex-row
-            gap-3 sm:gap-6
-            mt-8 sm:mt-10
-            sm:justify-start justify-center"
-          >
-            <button className="btn-noir-red rounded-lg
-              px-8 sm:px-12
-              py-4
-              w-full sm:w-auto
-              text-lg
-              hover:scale-105 transition-transform"
+            <button
+              onClick={() => smoothScroll('#about')}
+              className="group
+                bg-[var(--accent-red)]
+                rounded-md
+                px-8 py-4
+                text-lg font-medium
+                flex items-center gap-2
+                transition-opacity duration-200"
+              aria-label="Go to about section"
             >
-              Explore Our Vision
+              <span>
+                Explore Our Vision
+              </span>
+              <svg
+                className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
             </button>
-            <button className="btn-noir rounded-lg
-              px-6 sm:px-8
-              py-4
-              w-full sm:w-auto
-              text-lg
-              hover:scale-105 transition-transform"
-            >
-              Start a Conversation
-            </button>
-          </div>
+
         </div>
       </div>
     </section>

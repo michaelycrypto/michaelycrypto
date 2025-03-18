@@ -1,3 +1,5 @@
+import { smoothScroll } from '@/utils/smoothScroll';
+
 interface Service {
   number: string;
   title: string;
@@ -51,13 +53,10 @@ export const Services = () => {
         <div className="absolute inset-0 grid-neo" />
       </div>
 
-      <div className="container mx-auto py-32">
+      <div className="container mx-auto py-16">
         {/* Simplified header */}
-        <div className="grid grid-cols-12 gap-0 mb-24">
+        <div className="grid grid-cols-12 gap-0 mb-8">
           <div className="col-span-12 lg:col-span-8">
-            <span className="text-[var(--accent-red)] text-lg font-medium mb-6 block">
-              What We Do
-            </span>
             <h2 className="text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.9] mb-8">
               <span className="block text-[var(--text-primary)]">
                 Web3 Products,
@@ -73,10 +72,41 @@ export const Services = () => {
         </div>
 
         {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-12">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}
+        </div>
+
+        {/* Updated helper-style button */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <button
+            onClick={() => smoothScroll('#process')}
+            className="group
+              text-gray-400 hover:text-gray-200
+              rounded-full
+              px-6 py-3
+              text-lg
+              flex items-center gap-2
+              opacity-80 hover:opacity-100
+              transition-opacity duration-200"
+            aria-label="Go to process section"
+          >
+            See Our Process
+            <svg
+            className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+          </button>
         </div>
       </div>
     </section>
@@ -85,7 +115,7 @@ export const Services = () => {
 
 const ServiceCard = ({ number, title, description, icon }: Service) => {
   return (
-    <div className="group relative h-[360px] border-[1px] border-neutral-900 p-8 transition-all duration-500 hover:bg-neutral-900">
+    <div className="group relative h-[300px] border-[1px] border-neutral-900 p-8 transition-all duration-500 hover:bg-neutral-900">
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col">
         {/* Static content */}

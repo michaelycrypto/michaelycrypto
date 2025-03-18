@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const teamMember = {
   name: "@michaelycrypto",
   role: "Builder & Strategist",
@@ -30,16 +32,18 @@ export const Team = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-start gap-6 pt-4">
-                  <img
+                <div className="flex flex-col md:flex-row items-start gap-3 pt-4">
+                  <Image
                     src={teamMember.image}
                     alt={teamMember.name}
-                    className="w-20 h-20 rounded-md object-cover"
+                    width={48}
+                    height={48}
+                    className="rounded-md object-cover"
                   />
 
-                  <blockquote className="flex-1 bg-gray-50 rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] px-9 py-5 pb-0">
+                  <blockquote className="flex-1 bg-gray-50 rounded- shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] px-8 py-5 pb-0">
                     <p className="text-gray-700 text-lg leading-relaxed italic">
-                      Decentralized technology isn't just about new protocols—it's about creating better ways to build and connect. I'm focused on bridging the gap between web3's promise and its everyday utility through thoughtful, user-focused design.
+                      I believe in crypto&apos;s original vision - putting users back in control of their digital lives. Not your keys, not your coins. I'm building tools that make self-custody simple and give people true ownership of their assets, just as Satoshi intended.
                     </p>
                   </blockquote>
                 </div>
