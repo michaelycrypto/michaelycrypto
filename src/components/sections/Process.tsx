@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const processSteps = [
   {
@@ -61,109 +61,144 @@ const processSteps = [
 export const Process = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showContent, setShowContent] = useState(true);
+  const [displayIndex, setDisplayIndex] = useState(activeIndex);
 
   const handleCarouselRotate = (direction: 'next' | 'prev') => {
     if (isAnimating) return;
 
     setIsAnimating(true);
-    setActiveIndex(prev => {
-      if (direction === 'next') {
-        return (prev + 1) % processSteps.length;
-      }
-      return (prev - 1 + processSteps.length) % processSteps.length;
-    });
+    setShowContent(false);
 
+    // Faster fade out and transition
     setTimeout(() => {
-      setIsAnimating(false);
-    }, 500);
+      const nextIndex = direction === 'next'
+        ? (activeIndex + 1) % processSteps.length
+        : (activeIndex - 1 + processSteps.length) % processSteps.length;
+
+      setActiveIndex(nextIndex);
+      setDisplayIndex(nextIndex);
+
+      // Quicker content reveal
+      setTimeout(() => {
+        setShowContent(true);
+        setIsAnimating(false);
+      }, 500); // Reduced from 700
+    }, 100); // Reduced from 500
   };
 
+  // Update display index when active index changes directly (e.g., from progress indicators)
+  useEffect(() => {
+    if (!isAnimating) {
+      setDisplayIndex(activeIndex);
+    }
+  }, [activeIndex, isAnimating]);
+
   return (
-    <section id="process" className="py-32 px-6 bg-[var(--surface-card)]">
-      <div className="container mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-6xl font-semibold text-[var(--text-primary)] relative">
-            Our Development Process
+    <section id="process" className="relative min-h-screen py-24 lg:py-32 bg-[var(--surface-card)] overflow-hidden">
+      <div className="container mx-auto px-6">
+        {/* Centered title section */}
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight leading-[1.1]">
+            <span className="block text-foreground-primary">
+              Development
+            </span>
+            <span className="block text-[var(--accent-red)] mt-2">
+              Process
+            </span>
           </h2>
-          <p className="text-[var(--text-secondary)] mt-6 text-lg max-w-2xl mx-auto">
-            Through our proven systematic process, we transform complex challenges into elegant solutions that delight users.
-          </p>
+
+          {/* Refined description typography */}
+          <div className="mt-6 mb-16">
+            <p className="text-lg sm:text-xl text-neutral-400 font-body max-w-2xl mx-auto">
+              We transform complex challenges into elegant solutions.
+            </p>
+          </div>
         </div>
 
-        {/* Process Carousel */}
+        {/* Process Carousel - simplified container */}
         <div className="relative max-w-[90rem] mx-auto">
           <div className="relative overflow-hidden px-4">
             <div className="flex items-stretch justify-center gap-4">
               {/* Previous Card */}
               <button
                 onClick={() => handleCarouselRotate('prev')}
-                className="w-64 cursor-pointer group relative transition-all duration-500 ease-out focus:outline-none"
+                className="w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
                 style={{
-                  transform: `scale(0.85)`,
-                  opacity: 0.5,
+                  transform: `scale(0.9)`,
+                  opacity: 0.8,
                 }}
                 aria-label="Previous process step"
               >
                 <ProcessCard
-                  step={processSteps[
-                    (activeIndex - 1 + processSteps.length) % processSteps.length
-                  ]}
+                  step={processSteps[(displayIndex - 1 + processSteps.length) % processSteps.length]}
                   isActive={false}
+                  showContent={showContent}
+                  position="left"
                 />
               </button>
 
               {/* Active Card */}
-              <div className="w-[40rem] transition-all duration-500 transform relative z-10">
+              <div className="w-[40rem] transition-all duration-100 transform relative z-10">
                 <ProcessCard
-                  step={processSteps[activeIndex]}
+                  step={processSteps[displayIndex]}
                   isActive={true}
+                  showContent={showContent}
+                  position="center"
                 />
               </div>
 
               {/* Next Card */}
               <button
                 onClick={() => handleCarouselRotate('next')}
-                className="w-64 cursor-pointer group relative transition-all duration-500 ease-out focus:outline-none"
+                className="w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
                 style={{
-                  transform: `scale(0.85)`,
-                  opacity: 0.5,
+                  transform: `scale(0.9)`,
+                  opacity: 0.8,
                 }}
                 aria-label="Next process step"
               >
                 <ProcessCard
-                  step={processSteps[(activeIndex + 1) % processSteps.length]}
+                  step={processSteps[(displayIndex + 1) % processSteps.length]}
                   isActive={false}
+                  showContent={showContent}
+                  position="right"
                 />
               </button>
             </div>
           </div>
 
-          {/* Progress Indicators */}
-          <div className="flex justify-center gap-3 mt-12">
-            {processSteps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => !isAnimating && setActiveIndex(index)}
-                className={`group relative h-3 rounded-full transition-all duration-300
-                           ${index === activeIndex
-                             ? 'w-12 bg-[var(--accent-red)]'
-                             : 'w-3 bg-[var(--text-secondary)] opacity-50 hover:opacity-100'}`}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={index === activeIndex ? 'true' : 'false'}
-              >
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2
-                                text-xs text-[var(--text-secondary)]
-                                opacity-0 group-hover:opacity-100
-                                transform group-hover:-translate-y-1
-                                transition-all duration-300">
-                  {index + 1}
-                </span>
-              </button>
-            ))}
+          {/* Replace Progress Indicators with Step Progress */}
+          <div className="mt-12 max-w-md mx-auto">
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[var(--accent-red)] text-base">
+                {String(activeIndex + 1).padStart(2, '0')}
+              </span>
+              <div className="flex-1 h-1 bg-[var(--accent-red)]/10 rounded-full relative overflow-hidden">
+                <div
+                  className="absolute inset-y-0 left-0 bg-[var(--accent-red)] rounded-full transition-all duration-700"
+                  style={{
+                    width: `${((activeIndex + 1) / processSteps.length) * 100}%`
+                  }}
+                />
+              </div>
+              <span className="font-mono text-foreground-secondary text-base">
+                {String(processSteps.length).padStart(2, '0')}
+              </span>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Adding consistent background effects like in About */}
+      <div className="absolute inset-0 pointer-events-none opacity-60">
+        <div className="absolute top-[25%] left-[25%] w-[500px] h-[500px] bg-red-400/10 rounded-full blur-[100px] animate-float" />
+        <div className="absolute bottom-[25%] right-[25%] w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px] animate-float animation-delay-500" />
+      </div>
+
+      {/* Decorative lines matching About */}
+      <div className="absolute left-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="absolute right-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-l from-transparent via-white/15 to-transparent" />
     </section>
   );
 };
@@ -171,58 +206,101 @@ export const Process = () => {
 interface ProcessCardProps {
   step: typeof processSteps[0];
   isActive: boolean;
+  showContent: boolean;
+  position?: 'left' | 'center' | 'right';
 }
 
-const ProcessCard = ({ step, isActive }: ProcessCardProps) => {
+const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps) => {
   const cardClasses = isActive
-    ? "bg-[var(--surface-elevated)] rounded-2xl p-12 h-full border border-[var(--accent-red)] shadow-lg shadow-[var(--accent-red)]/10 backdrop-blur-lg"
-    : "bg-[var(--surface-elevated)]/30 rounded-xl p-6 border border-[rgba(255,255,255,0.05)] backdrop-blur-sm";
+    ? "bg-[var(--surface-elevated)] rounded-2xl p-8 sm:p-12 h-full border border-[var(--accent-red)] backdrop-blur-lg shadow-lg relative overflow-hidden"
+    : "bg-[var(--surface-elevated)]/50 rounded-xl p-6 sm:p-8 border border-[rgba(255,255,255,0.1)] backdrop-blur-sm hover:border-[rgba(255,255,255,0.2)] transition-all duration-100";
 
   return (
     <div className={cardClasses}>
-      {/* Step Number */}
-      <div className={`text-[var(--accent-red)] font-mono ${isActive ? 'text-4xl' : 'text-3xl'} mb-${isActive ? '8' : '3'}`}>
-        {step.step}
+      {/* Centered number with elegant reveal */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+          isActive && !showContent
+            ? 'opacity-100 scale-125'
+            : 'opacity-0 scale-100'
+        }`}
+      >
+        <span className="font-mono text-[var(--accent-red)] text-6xl sm:text-7xl font-bold">
+          {step.step}
+        </span>
       </div>
 
-      {isActive && (
-        <div className="absolute top-12 right-12 text-[var(--accent-red)]">
-          {step.icon}
-        </div>
-      )}
-
-      <h3 className={`${isActive ? 'text-4xl font-semibold mt-8' : 'text-lg font-medium'} text-[var(--text-primary)]`}>
-        {step.title}
-      </h3>
-
-      {isActive && (
-        <>
-          <p className="text-[var(--text-secondary)] mt-6 text-xl leading-relaxed">
-            {step.description}
-          </p>
-
-          {/* Progress Indicator */}
-          <div className="mt-10 space-y-4">
-            <div className="flex items-center gap-4">
-              <span className="text-[var(--accent-red)] font-mono text-lg">
+      {/* Content container */}
+      <div className={`
+        relative transition-all duration-100
+        ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
+      `}>
+        {isActive ? (
+          <>
+            {/* Active card content */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="font-mono text-3xl sm:text-4xl text-[var(--accent-red)]">
                 {step.step}
-              </span>
-              <div className="flex-1 h-1 bg-[var(--accent-red)]/20 rounded-full relative">
-                <div
-                  className="absolute inset-y-0 left-0 bg-[var(--accent-red)] rounded-full"
-                  style={{
-                    width: `${(parseInt(step.step) / processSteps.length) * 100}%`,
-                    transition: 'width 0.5s ease-out'
-                  }}
-                />
               </div>
-              <span className="text-[var(--text-secondary)] font-mono text-lg">
-                {String(processSteps.length).padStart(2, '0')}
-              </span>
+              <div className="text-[var(--accent-red)]">
+                {step.icon}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-foreground-primary tracking-tight">
+                {step.title}
+              </h3>
+
+              <p className="font-body text-base sm:text-lg text-foreground-secondary leading-relaxed">
+                {step.description}
+              </p>
+
+            </div>
+          </>
+        ) : (
+          // Simplified side card content with hover effect
+          <div className="text-center space-y-3 group">
+            {/* Normal content - fades out on hover */}
+            <div className="transition-all duration-100 group-hover:opacity-0">
+              <div className="font-mono text-3xl text-[var(--accent-red)] font-bold mb-2">
+                {step.step}
+              </div>
+              <h3 className="font-display text-lg text-foreground-primary/90 font-medium">
+                {step.title}
+              </h3>
+            </div>
+
+            {/* Chevron - fades in on hover */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-100">
+              <svg
+                className="w-12 h-12 text-foreground-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {position === 'left' ? (
+                  // Left chevron for previous button
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                ) : (
+                  // Right chevron for next button
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                )}
+              </svg>
             </div>
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 };

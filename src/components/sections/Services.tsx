@@ -118,18 +118,6 @@ const ServiceCard = ({ number, title, description, icon }: Service) => {
           <p className="text-neutral-400 leading-relaxed mb-6">
             {description}
           </p>
-
-          <span className="text-white font-medium inline-flex items-center gap-2">
-            Learn More
-            <svg
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </span>
         </div>
       </div>
     </div>

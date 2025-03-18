@@ -39,7 +39,7 @@ export const Team = () => {
 
                   <blockquote className="flex-1 bg-gray-50 rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] px-9 py-5 pb-0">
                     <p className="text-gray-700 text-lg leading-relaxed italic">
-                      I combine hands-on experience with practical insights to help teams build products that respect user freedom. Having been both a user and builder, I understand what makes self-sovereign products succeed in the real world.
+                      Decentralized technology isn't just about new protocols—it's about creating better ways to build and connect. I'm focused on bridging the gap between web3's promise and its everyday utility through thoughtful, user-focused design.
                     </p>
                   </blockquote>
                 </div>

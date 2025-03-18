@@ -15,8 +15,8 @@ const AnimatedSphere = () => {
     <MeshDistortMaterial
       color="#ffffff"
       attach="material"
-      distort={0.5} // Reduced distortion for smoother look
-      speed={0.1} // Slower speed
+      distort={0.35} // Reduced distortion for smoother look
+      speed={0.8} // Slower speed
       roughness={0}
       metalness={0}
       emissive="#ffffff"
@@ -27,14 +27,14 @@ const AnimatedSphere = () => {
   useFrame((state, delta) => {
     if (meshRef.current) {
       // Slower rotation
-      meshRef.current.rotation.y += 0.2 * delta;
+      meshRef.current.rotation.y += 0.1 * delta;
       // Smoother, slower scaling animation
-      meshRef.current.scale.setScalar(1.05 + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
+      meshRef.current.scale.setScalar(0.98 + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
     }
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 48, 48]}> {/* Increased segments for smoother appearance */}
+    <Sphere ref={meshRef} args={[1, 16, 48]}> {/* Increased segments for smoother appearance */}
       {material}
     </Sphere>
   );
@@ -84,7 +84,7 @@ export const About = () => {
           {/* Description section - refined layout */}
           <div className="col-span-12 lg:col-span-6 lg:col-start-5 space-y-6">
             <p className="text-2xl text-gray-600 max-w-xl">
-              In a world of centralized systems, we're building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
+              We're building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
             </p>
           </div>
         </div>

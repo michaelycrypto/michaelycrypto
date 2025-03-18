@@ -1,77 +1,28 @@
 import { socialLinks } from '@/data/content';
 
 const footerLinks = {
-  company: ['About', 'Mission', 'Technology', 'Blog'],
-  services: ['Privacy Tools', 'Security', 'Data Control', 'Integration'],
+  company: ['About', 'Mission'],
+  services: ['Privacy Tools', 'Security'],
 };
 
 export const Footer = () => {
   return (
     <footer className="relative bg-[var(--surface-void)] border-t border-[rgba(255,255,255,0.05)]">
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          {/* Brand Column */}
-          <div className="md:col-span-4 space-y-6">
+      <div className="container mx-auto px-6 py-12">
+        <div className="flex flex-col space-y-8">
+          {/* Brand and Bio */}
+          <div className="flex flex-col items-center text-center space-y-3">
             <h4 className="text-2xl font-bold text-[var(--text-primary)]">@michaelycrypto</h4>
-          </div>
-
-          {/* Quick Links */}
-          <div className="md:col-span-2 space-y-6">
-            <h5 className="text-[var(--text-primary)] font-medium mb-4">About</h5>
-            <ul className="space-y-3">
-              {footerLinks.company.map(item => (
-                <li key={item}>
-                  <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--accent-red)]
-                                     transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services Links */}
-          <div className="md:col-span-2 space-y-6">
-            <h5 className="text-[var(--text-primary)] font-medium mb-4">Services</h5>
-            <ul className="space-y-3">
-              {footerLinks.services.map(item => (
-                <li key={item}>
-                  <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--accent-red)]
-                                     transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Information */}
-          <div className="md:col-span-4 space-y-6">
-            <h5 className="text-[var(--text-primary)] font-medium mb-4">Get in Touch</h5>
-            <div className="space-y-4">
-              <ContactLink href="mailto:contact@digitalfreedom.com" text="contact@digitalfreedom.com" />
-              <ContactLink href="tel:+18005551234" text="+1 (800) 555-1234" />
-              <p className="text-[var(--text-secondary)]">
-                Privacy Plaza<br />
-                Silicon Valley, CA 94025
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-[var(--surface-card)]">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[var(--text-tertiary)] text-sm">
-              © 2024 Digital Freedom. All rights reserved.
+            <p className="text-[var(--text-secondary)]">
+              Web3 privacy advocate and builder.
             </p>
-            <div className="flex gap-6">
-              <FooterLink href="#" text="Privacy Policy" />
-              <FooterLink href="#" text="Terms of Service" />
-            </div>
+          </div>
+
+          {/* Bottom Bar - Moved inside main container */}
+          <div className="flex flex-col items-center space-y-4">
+            <p className="text-[var(--text-tertiary)] text-sm">
+              © 2025 michaelycrypto. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
