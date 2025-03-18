@@ -26,8 +26,23 @@ const AnimatedSphere = () => {
     if (meshRef.current) {
       // Slower rotation
       meshRef.current.rotation.y += 0.1 * delta;
-      // Smoother, slower scaling animation
-      meshRef.current.scale.setScalar(0.9 + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
+      // Define scale values for different breakpoints
+      const scaleValues = {
+        sm: 0.76,  // < 640px
+        md: 0.84, // < 768px
+        lg: 0.9,  // < 1024px
+        xl: 0.96,  // < 1280px
+        '2xl': 1.02 // >= 1280px
+      };
+
+      // Get scale based on window width
+      const baseScale = window.innerWidth < 640 ? scaleValues.sm
+        : window.innerWidth < 768 ? scaleValues.md
+        : window.innerWidth < 1024 ? scaleValues.lg
+        : window.innerWidth < 1280 ? scaleValues.xl
+        : scaleValues['2xl'];
+
+      meshRef.current.scale.setScalar(baseScale + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
     }
   });
 
@@ -64,22 +79,22 @@ export const About = () => {
       </div>
 
       <div className="container mx-auto px-6 min-h-screen flex items-center transition-all duration-700">
-        <div className="grid grid-cols-12 gap-6 relative z-10 w-full max-w-5xl mx-auto">
-          {/* Title section - inspired by Hero styling */}
-          <div className="col-span-12 lg:col-span-10 mb-8">
-            <h2 className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-tight leading-[0.9]">
+        <div className="grid grid-cols-12 relative z-10 w-full max-w-5xl mx-auto">
+          {/* Title section - improved responsive typography */}
+          <div className="col-span-12 lg:col-span-12">
+            <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-bold tracking-tight leading-[1.1] md:leading-[0.9]">
               <span className="block text-[var(--noir-void)] transform hover:translate-x-2 transition-transform duration-300">
                 Your Data.
               </span>
-              <span className="block text-[var(--accent-red)] mt-4 transform hover:-translate-x-2 transition-transform duration-300 ml-[15%]">
+              <span className="block text-[var(--accent-red)] mt-2 md:mt-4 transform hover:-translate-x-2 transition-transform duration-300 ml-[10%] md:ml-[15%]">
                 Your Control.
               </span>
             </h2>
           </div>
 
-          {/* Description section - refined layout */}
+          {/* Description section - improved responsive text */}
           <div className="col-span-12 lg:col-span-6 lg:col-start-5 space-y-6">
-            <p className="text-2xl text-gray-600 max-w-xl">
+            <p className="text-md sm:text-lg lg:text-xl text-gray-600 max-w-xl">
               We&apos;re building technology that puts control back in your hands. Experience the power of self-sovereign tools that deliver exceptional performance while preserving your digital autonomy.
             </p>
           </div>

@@ -216,7 +216,6 @@ export const Hero = () => {
         <button
           onClick={() => smoothScroll('#about')}
           className="group
-            bg-transparent
             text-white
             px-4 py-2
             text-lg font-medium
@@ -225,7 +224,7 @@ export const Hero = () => {
             transition-opacity duration-200"
           aria-label="Go to about section"
         >
-          <span>
+          <span className="whitespace-nowrap">
             Explore Our Vision
           </span>
           <svg

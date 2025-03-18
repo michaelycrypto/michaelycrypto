@@ -22,7 +22,7 @@ const services: Service[] = [
   {
     number: "03",
     title: "Product Management",
-    description: "We guide Web3 products from concept to launch using agile methods and data-driven decisions, ensuring alignment between technical capabilities and business goals.",
+    description: "We guide Web3 products from concept to launch using agile methods and data-driven decisions, ensuring alignment with business goals.",
     icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
   },
   {
@@ -72,7 +72,7 @@ export const Services = () => {
         </div>
 
         {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 mb-12">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}
@@ -115,7 +115,7 @@ export const Services = () => {
 
 const ServiceCard = ({ number, title, description, icon }: Service) => {
   return (
-    <div className="group relative h-[300px] border-[1px] border-neutral-900 p-8 transition-all duration-500 hover:bg-neutral-900">
+    <div className="group relative border-[1px] border-neutral-900 p-8 transition-all duration-500 hover:bg-neutral-900">
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col">
         {/* Static content */}

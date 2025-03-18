@@ -665,29 +665,38 @@
   }
 }
 
-/* Ultra-Modern Scrollbar */
+/* Refined Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--surface-base);
+  background: var(--surface-void);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--surface-float);
-  border: 3px solid var(--surface-base);
-  border-radius: 6px;
+  border-radius: 4px;
+  border: 2px solid var(--surface-void);
+  transition: background 0.2s var(--ease-smooth);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--neon-blue);
+  background: var(--surface-depth);
 }
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-float) var(--surface-void);
+}
+
 
 /* Advanced Selection Styles */
 ::selection {
-  background: var(--neon-blue);
+  background: var(--accent-red);
   color: var(--text-display);
 }
 

@@ -95,78 +95,67 @@ export const Process = () => {
   }, [activeIndex, isAnimating]);
 
   return (
-    <section id="process" className="relative min-h-screen py-24 bg-[var(--surface-card)] overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Centered title section */}
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-
-          {/* Refined description typography */}
-          <div className="mt-6 mb-16">
+    <section id="process" className="relative py-16 sm:py-24 bg-[var(--surface-card)] overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Centered title section - adjusted vertical spacing */}
+        <div className="max-w-4xl mx-auto text-center relative z-10 mb-12 sm:mb-16">
+          <div className="mt-4">
             <p className="text-lg md:text-2xl text-neutral-400 font-body max-w-2xl mx-auto">
               We believe in making blockchain technology feel natural and accessible. Our solutions evolve from real user needs, creating experiences that simply feel right.
             </p>
           </div>
         </div>
 
-        {/* Process Carousel - simplified container */}
-        <div className="relative w-full lg:max-w-[90rem] mx-auto">
-          <div className="relative overflow-hidden px-2 sm:px-4">
-            <div className="flex items-stretch justify-center gap-2 sm:gap-4">
-              {/* Previous Card */}
-              <button
-                onClick={() => handleCarouselRotate('prev')}
-                className="w-32 sm:w-40 md:w-48 lg:w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
-                style={{
-                  transform: `scale(0.9)`,
-                  opacity: 0.8,
-                }}
-                aria-label="Previous process step"
-              >
-                <ProcessCard
-                  step={processSteps[(displayIndex - 1 + processSteps.length) % processSteps.length]}
-                  isActive={false}
-                  showContent={showContent}
-                  position="left"
-                />
-              </button>
-
-              {/* Active Card */}
-              <div className="w-full sm:w-[28rem] md:w-[32rem] lg:w-[40rem] transition-all duration-100 transform relative z-10">
+        {/* Process Carousel - adjusted container spacing */}
+        <div className="relative w-full max-w-5xl mx-auto">
+          <div className="relative overflow-visible">
+            {/* Card Container - refined margins */}
+            <div className="flex items-center justify-center mb-8 sm:mb-12">
+              <div className="w-full max-w-[32rem]">
                 <ProcessCard
                   step={processSteps[displayIndex]}
                   isActive={true}
                   showContent={showContent}
-                  position="center"
                 />
               </div>
-
-              {/* Next Card */}
-              <button
-                onClick={() => handleCarouselRotate('next')}
-                className="w-32 sm:w-40 md:w-48 lg:w-64 cursor-pointer group relative transition-all duration-100 ease-out focus:outline-none"
-                style={{
-                  transform: `scale(0.9)`,
-                  opacity: 0.8,
-                }}
-                aria-label="Next process step"
-              >
-                <ProcessCard
-                  step={processSteps[(displayIndex + 1) % processSteps.length]}
-                  isActive={false}
-                  showContent={showContent}
-                  position="right"
-                />
-              </button>
             </div>
-          </div>
 
-          {/* Replace Progress Indicators with Step Progress */}
-          <div className="mt-12 max-w-md mx-auto">
-            <div className="flex items-center gap-4">
-              <span className="font-mono text-[var(--accent-red)] text-base">
-                {String(activeIndex + 1).padStart(2, '0')}
-              </span>
-              <div className="flex-1 h-1 bg-[var(--accent-red)]/10 rounded-full relative overflow-hidden">
+            {/* Navigation and Progress - adjusted spacing */}
+            <div className="max-w-md mx-auto px-4">
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={() => handleCarouselRotate('prev')}
+                  className="p-2 rounded-full bg-[var(--surface-elevated)] border border-[rgba(255,255,255,0.1)] hover:border-[var(--accent-red)] transition-colors duration-200"
+                  aria-label="Previous step"
+                >
+                  <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xl text-[var(--accent-red)]">
+                    {String(activeIndex + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-mono text-sm text-neutral-400">/</span>
+                  <span className="font-mono text-sm text-neutral-400">
+                    {String(processSteps.length).padStart(2, '0')}
+                  </span>
+                </div>
+
+                <button
+                  onClick={() => handleCarouselRotate('next')}
+                  className="p-2 rounded-full bg-[var(--surface-elevated)] border border-[rgba(255,255,255,0.1)] hover:border-[var(--accent-red)] transition-colors duration-200"
+                  aria-label="Next step"
+                >
+                  <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="h-1 bg-[var(--accent-red)]/10 rounded-full relative overflow-hidden">
                 <div
                   className="absolute inset-y-0 left-0 bg-[var(--accent-red)] rounded-full transition-all duration-700"
                   style={{
@@ -174,9 +163,6 @@ export const Process = () => {
                   }}
                 />
               </div>
-              <span className="font-mono text-foreground-secondary text-base">
-                {String(processSteps.length).padStart(2, '0')}
-              </span>
             </div>
           </div>
         </div>
@@ -187,10 +173,6 @@ export const Process = () => {
         <div className="absolute top-[25%] left-[25%] w-[500px] h-[500px] bg-red-400/10 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-[25%] right-[25%] w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px] animate-float animation-delay-500" />
       </div>
-
-      {/* Decorative lines matching About */}
-      <div className="absolute left-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-      <div className="absolute right-0 top-1/2 w-[5%] h-[1px] bg-gradient-to-l from-transparent via-white/15 to-transparent" />
     </section>
   );
 };
@@ -199,16 +181,11 @@ interface ProcessCardProps {
   step: typeof processSteps[0];
   isActive: boolean;
   showContent: boolean;
-  position?: 'left' | 'center' | 'right';
 }
 
-const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps) => {
-  const cardClasses = isActive
-    ? "bg-[var(--surface-elevated)] rounded-2xl p-6 sm:p-8 lg:p-12 h-full border border-[var(--accent-red)] backdrop-blur-lg shadow-lg relative overflow-hidden"
-    : "bg-[var(--surface-elevated)]/50 rounded-xl p-4 sm:p-6 lg:p-8 border border-[rgba(255,255,255,0.1)] backdrop-blur-sm hover:border-[rgba(255,255,255,0.2)] transition-all duration-100";
-
+const ProcessCard = ({ step, isActive, showContent }: ProcessCardProps) => {
   return (
-    <div className={cardClasses}>
+    <div className="bg-[var(--surface-elevated)] rounded-2xl p-6 sm:p-8 h-full border border-[var(--accent-red)] shadow-lg relative overflow-hidden">
       {/* Centered number with elegant reveal */}
       <div
         className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
@@ -271,23 +248,12 @@ const ProcessCard = ({ step, isActive, showContent, position }: ProcessCardProps
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                {position === 'left' ? (
-                  // Left chevron for previous button
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                ) : (
-                  // Right chevron for next button
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </div>
           </div>
