@@ -208,37 +208,40 @@ export const Hero = () => {
             We craft transformative digital experiences that empower human potential while fiercely protecting individual privacy and autonomy.
           </p>
 
-          {/* Improved button layout */}
-            <button
-              onClick={() => smoothScroll('#about')}
-              className="group
-                bg-[var(--accent-red)]
-                rounded-md
-                px-8 py-4
-                text-lg font-medium
-                flex items-center gap-2
-                transition-opacity duration-200"
-              aria-label="Go to about section"
-            >
-              <span>
-                Explore Our Vision
-              </span>
-              <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </button>
-
         </div>
+      </div>
+
+      {/* Updated button positioning and styling to match About section */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <button
+          onClick={() => smoothScroll('#about')}
+          className="group
+            bg-transparent
+            text-white
+            px-4 py-2
+            text-lg font-medium
+            flex items-center gap-2
+            opacity-80 hover:opacity-100
+            transition-opacity duration-200"
+          aria-label="Go to about section"
+        >
+          <span>
+            Explore Our Vision
+          </span>
+          <svg
+            className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
       </div>
     </section>
   );

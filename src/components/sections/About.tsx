@@ -27,7 +27,7 @@ const AnimatedSphere = () => {
       // Slower rotation
       meshRef.current.rotation.y += 0.1 * delta;
       // Smoother, slower scaling animation
-      meshRef.current.scale.setScalar(0.98 + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
+      meshRef.current.scale.setScalar(0.9 + Math.sin(state.clock.elapsedTime * 0.3) * 0.015);
     }
   });
 
